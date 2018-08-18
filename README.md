@@ -24,7 +24,7 @@ pip install -r requirements.txt
 - Arudinoシールド互換サイズ
 - MOSFETによる12V制御回路×4
 - 各種センサ向けのコネクタ
-
+- [https://github.com/pololu/vl53l0x-arduino](Pololu Arduino library for VL53L0X)
 
 
 
