@@ -1,10 +1,11 @@
 # 書影撮影システム
 
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
+## コンセプト
 
-One to two paragraph statement about your product and what it does.
+- 書影（本の表示画像）キャプチャ用のスキャナデバイス
+- 本を置いたら自動的に撮影開始
+- 表紙・裏表紙・背の3面を高速撮影（2秒程度）
+- ネットワーク接続なしでスタンドアロン動作可能
 
 ![](doc/diagram.png)
 
