@@ -13,6 +13,9 @@
 
 ## Installation
 
+-[Anaconda](https://www.anaconda.com/download/) Python3.6 をインストール
+-[LAVFilters](https://github.com/Nevcairiel/LAVFilters/releases)をインストール（任意） Motion-JPEGの処理速度改善
+
 Windows:
 
 ```sh
