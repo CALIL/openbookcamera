@@ -13,7 +13,7 @@ import coloredlogs
 from turbojpeg import TurboJPEG
 
 DATAPATH = os.path.normpath(
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data/")
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "./data/")
 )
 
 logger = logging.getLogger("システム")
