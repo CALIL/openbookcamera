@@ -40,7 +40,7 @@ void setup() {
   digitalWrite(LED2PIN, LOW);
   digitalWrite(LED3PIN, LOW);
   digitalWrite(SENSOR_ACTIVE_PIN, LOW);
-  Serial.begin(9600);
+  Serial.begin(115200);
   Wire.begin();
   sensor.init();
   sensor.setTimeout(500);

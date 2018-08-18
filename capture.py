@@ -51,7 +51,7 @@ def connect_controller():
     ser = None
     for port in range(1, 10):
         try:
-            ser = serial.Serial("COM%d" % port, 9600, timeout=1, write_timeout=1)
+            ser = serial.Serial("COM%d" % port, 115200, timeout=1, write_timeout=1)
             logger.debug("COM%dに接続中..." % port)
             for _ in range(1, 5):
                 ser.write(b"3")
