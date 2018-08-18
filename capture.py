@@ -54,10 +54,13 @@ def connect_controller():
             ser = serial.Serial("COM%d" % port, 115200, timeout=1, write_timeout=1)
             logger.debug("COM%dに接続中..." % port)
             for _ in range(1, 5):
+                if ser.in_waiting > 0:
+                    ser.read_all()
+                ser.write(b"3")
+                ser.flush()
                 ser.write(b"3")
                 ser.flush()
                 time.sleep(0.5)
-                ser.flush()
                 if ser.in_waiting > 0:
                     line = ser.readline().strip().decode("utf-8")
                     if line == "ACK":
