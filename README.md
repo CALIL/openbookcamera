@@ -18,6 +18,7 @@
 Windows:
 
 - [Anaconda](https://www.anaconda.com/download/) Python3.6 をインストール
+- [libjpeg-turbo](https://libjpeg-turbo.org/Documentation/Documentation) をインストール
 - [LAVFilters](https://github.com/Nevcairiel/LAVFilters/releases) をインストール・Motion-JPEGの処理速度改善（任意）
 
 ```sh
