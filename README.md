@@ -17,6 +17,17 @@ conda install numpy
 conda install -c menpo opencv
 pip install -r requirements.txt
 ```
+## 制御ボード
+
+![](doc/circuit.png)
+
+- Arudinoシールド互換サイズ
+- MOSFETによる12V制御回路×4
+- 各種センサ向けのコネクタ
+
+
+
+
 
 ## Usage example
 
