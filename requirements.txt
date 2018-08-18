@@ -2,3 +2,4 @@ coloredlogs
 pyzbar
 numpy
 pyserial
+PyTurboJPEG
