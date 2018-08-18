@@ -1,5 +1,7 @@
 # 書影撮影システム
 
+汎用的なデバイスで構成される高速な書影撮影システム
+
 ## コンセプト
 
 - 書影（本の表示画像）キャプチャ用のスキャナデバイス
@@ -16,7 +18,7 @@
 Windows:
 
 - [Anaconda](https://www.anaconda.com/download/) Python3.6 をインストール
-- [LAVFilters](https://github.com/Nevcairiel/LAVFilters/releases)をインストール（任意） Motion-JPEGの処理速度改善
+- [LAVFilters](https://github.com/Nevcairiel/LAVFilters/releases) をインストール・Motion-JPEGの処理速度改善（任意）
 
 ```sh
 conda install numpy
