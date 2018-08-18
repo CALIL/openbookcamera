@@ -13,10 +13,10 @@
 
 ## Installation
 
--[Anaconda](https://www.anaconda.com/download/) Python3.6 をインストール
--[LAVFilters](https://github.com/Nevcairiel/LAVFilters/releases)をインストール（任意） Motion-JPEGの処理速度改善
-
 Windows:
+
+- [Anaconda](https://www.anaconda.com/download/) Python3.6 をインストール
+- [LAVFilters](https://github.com/Nevcairiel/LAVFilters/releases)をインストール（任意） Motion-JPEGの処理速度改善
 
 ```sh
 conda install numpy
@@ -38,7 +38,7 @@ pip install -r requirements.txt
 
 - [UVC規格](https://en.wikipedia.org/wiki/USB_video_device_class)の汎用的なUSBカメラに対応
 - 試作機では[IPEVO社製V4K](https://www.ipevo.jp/v4k.html)を採用（800万画素）
-- 各カメラを独立したUSBポートに接続すること（USBハブを用いた場合は帯域不足となる場合がある）
+- 各カメラを独立したUSBポートに接続すること（USBハブを用いた場合は帯域不足となる）
 
 ## Release History
 
