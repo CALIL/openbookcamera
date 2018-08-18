@@ -1,0 +1,4 @@
+coloredlogs
+pyzbar
+numpy
+pyserial
