@@ -1,5 +1,5 @@
 /**
-  BOOK-COVER-SCANNER phy-module
+  BOOK-COVER-SCANNER phy-modu]le
 
   Copyright (c) 2018 Ryuuji Yoshimoto
 
@@ -54,7 +54,7 @@ void setup() {
 }
 
 void ranging() {
-  mm = 364 - sensor.readRangeSingleMillimeters();
+  mm = 384 - sensor.readRangeSingleMillimeters();
   if (mm < 0) {
     mm = 0;
   }
@@ -150,4 +150,3 @@ void loop() {
     }
   }
 }
-
