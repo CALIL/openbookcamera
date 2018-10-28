@@ -107,11 +107,11 @@ def initialize_camera(cap, role):
     cap.set(cv2.CAP_PROP_SATURATION, 64)
     cap.set(cv2.CAP_PROP_HUE, 0)
     if role == "BOTTOM":
-        cap.set(cv2.CAP_PROP_FOCUS, 120)
+        cap.set(cv2.CAP_PROP_FOCUS, 112)
         cap.set(cv2.CAP_PROP_BRIGHTNESS, -50)
         cap.set(cv2.CAP_PROP_GAMMA, 150)  # 色温度 6000K
     elif role == "SIDE":
-        cap.set(cv2.CAP_PROP_FOCUS, 100)  # フォーカス設定 28
+        cap.set(cv2.CAP_PROP_FOCUS, 95)  # フォーカス設定 28
         cap.set(cv2.CAP_PROP_BRIGHTNESS, -100)  # 色温度 6000K
         cap.set(cv2.CAP_PROP_GAMMA, 110)  # 色温度 6000K
     elif role == "TOP":
@@ -201,7 +201,7 @@ while True:
             pass
         elif line.startswith("HEIGHT"):
             mm = int(line.split(":")[1])
-            focus = int(0.1645 * mm + 67.886)
+            focus = int(0.0145 * mm + 85.886)
             logger.info("撮影対象の高さは%dmm、カメラ[TOP]のフォーカスを%dに設定します" % (mm, focus))
             cap_top.set(cv2.CAP_PROP_FOCUS, focus)
             cap_top.read()
