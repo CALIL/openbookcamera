@@ -19,7 +19,7 @@ Windows:
 
 - [Anaconda](https://www.anaconda.com/download/) Python3.7 をインストール [Anaconda3-5.3.0-Windows-x86_64.exe](https://repo.anaconda.com/archive/Anaconda3-5.3.0-Windows-x86_64.exe)
 - [libjpeg-turbo](https://libjpeg-turbo.org/Documentation/Documentation) をインストール [libjpeg-turbo-1.5.3-vc64.exe](https://sourceforge.net/projects/libjpeg-turbo/files/1.5.3/libjpeg-turbo-1.5.3-vc64.exe/download)
-- [Visual C++ Redistributable Packages for Visual Studio 2013](https://www.microsoft.com/en-US/download/details.aspx?id=40784)をインストール
+- [Visual C++ Redistributable Packages for Visual Studio 2013](https://www.microsoft.com/en-US/download/details.aspx?id=40784)をインストール（pyzbarが依存）
 
 ```sh
 conda install numpy
