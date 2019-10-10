@@ -22,7 +22,7 @@ Windows:
 - [Visual C++ Redistributable Packages for Visual Studio 2013](https://www.microsoft.com/en-US/download/details.aspx?id=40784)をインストール（pyzbarが依存）
 
 ```sh
-conda install -c menpo opencv==3.4.2
+conda install -c opencv==3.4.2
 pip install -r requirements.txt
 ```
 
@@ -44,5 +44,6 @@ pip install -r requirements.txt
 
 ## Release History
 
-* 0.0.1
-    * Work in progress
+* 0.0.1 Work in progress
+* 1.0.0 正式リリース
+* 1.1.0 V4K最新ファームウェアに対応
