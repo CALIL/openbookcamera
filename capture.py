@@ -98,9 +98,21 @@ logger.info("制御装置に接続しました")
 
 def initialize_camera(cap, role):
     logger.info("カメラ[%s]を初期化しています" % role)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 3264)  # 幅 3
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 2448)  # 高さ 4
-    cap.set(cv2.CAP_PROP_FPS, 15)  # FPS 5
+
+    # 新しいV4K対応
+    # しばらく低解像度をデータ取得した後に、高解像度に切り替える
+    cap.set(cv2.CAP_PROP_FPS, 15)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640) 
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+    cap.set(cv2.CAP_PROP_FOURCC,  cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+    for x in range(1,50):
+        cap.read()
+    cap.set(cv2.CAP_PROP_FPS, 15)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 2448)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 3264)
+    for x in range(1,5):
+        cap.read()
+
     cap.set(cv2.CAP_PROP_AUTOFOCUS, 0)  # オートフォーカスオフ 39
     cap.set(cv2.CAP_PROP_WHITE_BALANCE_BLUE_U, 6000)  # 色温度 6000K
     cap.set(cv2.CAP_PROP_SHARPNESS, 2)
@@ -126,7 +138,7 @@ def initialize_camera(cap, role):
 
 cameras = []
 for x in range(0, 3):
-    cameras.append(cv2.VideoCapture(x))
+    cameras.append(cv2.VideoCapture(x+700))
     initialize_camera(cameras[x], str(x + 1))
 
 logger.info("カメラの起動を待っています")
