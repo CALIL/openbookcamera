@@ -17,14 +17,26 @@
 
 Windows:
 
-- [Anaconda](https://www.anaconda.com/download/) Python3.7 をインストール [Anaconda3-5.3.0-Windows-x86_64.exe](https://repo.anaconda.com/archive/Anaconda3-5.3.0-Windows-x86_64.exe)
+- [Anaconda](https://www.anaconda.com/download/) Python3.7 をインストール
 - [libjpeg-turbo](https://libjpeg-turbo.org/Documentation/Documentation) をインストール [libjpeg-turbo-1.5.3-vc64.exe](https://sourceforge.net/projects/libjpeg-turbo/files/1.5.3/libjpeg-turbo-1.5.3-vc64.exe/download)
 - [Visual C++ Redistributable Packages for Visual Studio 2013](https://www.microsoft.com/en-US/download/details.aspx?id=40784)をインストール（pyzbarが依存）
 
 ```sh
-conda install -c opencv==3.4.2
+conda install opencv==3.4.2
 pip install -r requirements.txt
+python capture.py
 ```
+
+## キーボード操作
+
+| キー | 役割                     |
+|------|--------------------------|
+| 0    | 待機状態に戻す           |
+| 1    | 上面のカメラに切り替える |
+| 2    | 下面のカメラに切り替える |
+| 3    | 背面のカメラに切り替える |
+| 4    | 距離センサのテスト       |
+| c    | カメラの設定画面を開く   |
 
 ## 制御ボード
 
