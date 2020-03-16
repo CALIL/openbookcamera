@@ -15,6 +15,7 @@ from turbojpeg import TurboJPEG
 DATAPATH = os.path.normpath(
     os.path.join(os.path.dirname(os.path.abspath(__file__)), "./data/")
 )
+IS_NEW4K = True # 新しいV4Kファームウェア（製造番号10以下ではFalseを指定）
 
 logger = logging.getLogger("システム")
 coloredlogs.install(level="DEBUG", fmt="%(asctime)s %(levelname)s %(message)s")
@@ -73,9 +74,9 @@ def connect_controller():
 
 def calc_white_region(img):
     """
-    画像上部(30ピクセル)の白領域の割合を返す
+    画像上部(20ピクセル)の白領域の割合を返す
     """
-    im = img[0:30, :]
+    im = img[0:20, :]
     im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
     _, im = cv2.threshold(im, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     hist = cv2.calcHist([im], [0], None, [2], [0, 256])
@@ -99,41 +100,60 @@ logger.info("制御装置に接続しました")
 def initialize_camera(cap, role):
     logger.info("カメラ[%s]を初期化しています" % role)
 
-    # 新しいV4K対応
-    # しばらく低解像度をデータ取得した後に、高解像度に切り替える
-    cap.set(cv2.CAP_PROP_FPS, 15)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640) 
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-    cap.set(cv2.CAP_PROP_FOURCC,  cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
-    for x in range(1,50):
-        cap.read()
+    if IS_NEW4K:
+        # しばらく低解像度をデータ取得した後に、高解像度に切り替える
+        cap.set(cv2.CAP_PROP_AUTO_EXPOSURE , float(0.25))
+        cap.set(cv2.CAP_PROP_EXPOSURE,  float(-6))
+        cap.set(cv2.CAP_PROP_FPS, 15)
+        cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640) 
+        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        cap.set(cv2.CAP_PROP_FOURCC,  cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+        for x in range(1,50):
+            cap.read()
+            
     cap.set(cv2.CAP_PROP_FPS, 15)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 2448)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 3264)
     for x in range(1,5):
         cap.read()
 
-    cap.set(cv2.CAP_PROP_AUTOFOCUS, 0)  # オートフォーカスオフ 39
-    cap.set(cv2.CAP_PROP_WHITE_BALANCE_BLUE_U, 6000)  # 色温度 6000K
+    cap.set(cv2.CAP_PROP_AUTOFOCUS, 0)  # オートフォーカスオフ
+
+    if IS_NEW4K:
+        cap.set(cv2.CAP_PROP_WHITE_BALANCE_BLUE_U, 5000)  # 色温度（反映されない: https://github.com/opencv/opencv/issues/13130）
+    else:
+        cap.set(cv2.CAP_PROP_WHITE_BALANCE_BLUE_U, 6000)  # 色温度
+
     cap.set(cv2.CAP_PROP_SHARPNESS, 2)
     cap.set(cv2.CAP_PROP_SATURATION, 64)
     cap.set(cv2.CAP_PROP_HUE, 0)
     if role == "BOTTOM":
-        cap.set(cv2.CAP_PROP_FOCUS, 112)
-        cap.set(cv2.CAP_PROP_BRIGHTNESS, -50)
-        cap.set(cv2.CAP_PROP_GAMMA, 150)  # 色温度 6000K
+        cap.set(cv2.CAP_PROP_FOCUS,  271 if IS_NEW4K else 112)
+        cap.set(cv2.CAP_PROP_BRIGHTNESS, 0 if IS_NEW4K else -50)
+        cap.set(cv2.CAP_PROP_GAMMA, 110 if IS_NEW4K else 150)
+        if IS_NEW4K:
+            cap.set(cv2.CAP_PROP_AUTO_EXPOSURE , float(0.25))
+            cap.set(cv2.CAP_PROP_EXPOSURE,  float(-7))
     elif role == "SIDE":
-        cap.set(cv2.CAP_PROP_FOCUS, 95)  # フォーカス設定 28
-        cap.set(cv2.CAP_PROP_BRIGHTNESS, -100)  # 色温度 6000K
-        cap.set(cv2.CAP_PROP_GAMMA, 110)  # 色温度 6000K
+        cap.set(cv2.CAP_PROP_FOCUS, 235 if IS_NEW4K else 95)  # フォーカス設定
+        cap.set(cv2.CAP_PROP_BRIGHTNESS, 0 if IS_NEW4K else -100)
+        cap.set(cv2.CAP_PROP_GAMMA, 110 if IS_NEW4K else 110)
+        if IS_NEW4K:
+            cap.set(cv2.CAP_PROP_AUTO_EXPOSURE , float(0.25))
+            cap.set(cv2.CAP_PROP_EXPOSURE,  float(-7))
     elif role == "TOP":
-        cap.set(cv2.CAP_PROP_FOCUS, 77)  # フォーカス設定 28
-        cap.set(cv2.CAP_PROP_BRIGHTNESS, -40)  # 色温度 6000K
-        cap.set(cv2.CAP_PROP_GAMMA, 130)  # 色温度 6000K
+        cap.set(cv2.CAP_PROP_FOCUS, 200 if IS_NEW4K else 77)  # フォーカス設定
+        cap.set(cv2.CAP_PROP_BRIGHTNESS, 0 if IS_NEW4K else -40)
+        cap.set(cv2.CAP_PROP_GAMMA,110 if IS_NEW4K else 130)
+        if IS_NEW4K:
+            cap.set(cv2.CAP_PROP_AUTO_EXPOSURE , float(0.25))
+            cap.set(cv2.CAP_PROP_EXPOSURE,  float(-6))
     else:
-        cap.set(cv2.CAP_PROP_FOCUS, 70)
-        cap.set(cv2.CAP_PROP_BRIGHTNESS, -40)
+        cap.set(cv2.CAP_PROP_FOCUS, 200 if IS_NEW4K else 70)
+        cap.set(cv2.CAP_PROP_BRIGHTNESS, 0 if IS_NEW4K else -40)
         cap.set(cv2.CAP_PROP_GAMMA, 100)
+        if IS_NEW4K:
+             cap.set(cv2.CAP_PROP_AUTO_EXPOSURE , float(1))
 
 
 cameras = []
@@ -177,6 +197,7 @@ while True:
             index_top = white_regions[2][1]
             index_bottom = white_regions[1][1]
         break
+
 ser.write(b"3")
 cap_top = cameras[index_top]
 initialize_camera(cap_top, "TOP")
@@ -213,7 +234,10 @@ while True:
             pass
         elif line.startswith("HEIGHT"):
             mm = int(line.split(":")[1])
-            focus = int(0.0145 * mm + 85.886)
+            if IS_NEW4K:
+                focus = int(0.5 * mm + 180)
+            else:
+                focus = int(0.0145 * mm + 85.886)
             logger.info("撮影対象の高さは%dmm、カメラ[TOP]のフォーカスを%dに設定します" % (mm, focus))
             cap_top.set(cv2.CAP_PROP_FOCUS, focus)
             cap_top.read()
@@ -266,6 +290,7 @@ while True:
     cv2.imshow("BC-SCANNER", halfImg)
 
     key = cv2.waitKey(1)
+
     if key == ord("0"):
         ser.write(b"0")
     if key == ord("1"):

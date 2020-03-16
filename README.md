@@ -57,8 +57,13 @@ python capture.py
 - カーリルでは[IPEVO社製V4K](https://www.ipevo.jp/v4k.html)を採用（800万画素）
 - 各カメラを独立したUSBポートに接続すること（USBハブを用いた場合は帯域不足となる）
 
+## 注意事項
+
+* 2019年12月購入以降のV4Kにおいて、色温度の設定が自動化できない不具合を確認しています。この問題は[openCV側の不具合](https://github.com/opencv/opencv/issues/13130)の可能性があります。cコマンドによるマニュアル設定をお願いします。
+
 ## Release History
 
 * 0.0.1 Work in progress
 * 1.0.0 正式リリース
 * 1.1.0 V4K最新ファームウェアに対応
+* 1.2.0 V4K最新ファームウェアに対応
