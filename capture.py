@@ -187,7 +187,7 @@ while True:
     r1 = calc_white_region(img1)
     _, img2 = cameras[white_regions[2][1]].read()
     r2 = calc_white_region(img2)
-    if abs(r1 - r2) > 0.5:
+    if abs(r1 - r2) > 0.3:
         if r1 > r2:
             logger.info("カメラ[TOP]を検出しました:%d" % (white_regions[1][1] + 1))
             index_top = white_regions[1][1]
