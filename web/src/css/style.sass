@@ -1,0 +1,260 @@
+@charset "utf-8"
+@import "reset"
+
+// 変数
+$width: 886px
+
+=mobile
+  @media screen and (max-width: 768px)
+    @content
+
+=tablet
+  @media screen and (max-width: 992px)
+    @content
+
+=pc
+  @media screen and (max-width: 1200px)
+    @content
+
+=ie10
+  @media all and (-ms-high-contrast:none)
+    @content
+
+// ベース
+*
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  box-sizing: border-box
+  font-feature-settings: "pkna" 1
+
+html
+  font-size: 62.5%
+  &.hidden
+    overflow: hidden
+    height: 100%
+body
+  background-color: #222222
+  color: #FEE100
+  font-size: 1.5rem
+  line-height: 1
+  word-wrap: break-word
+  margin: 0
+  font-family: "游ゴシック","YuGothic",'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3',Meiryo, メイリオ, 'PT Sans', 'Lucida Grande', sans-serif
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+  +mobile
+    padding: 0
+
+h1
+  font-size: 4.6rem
+  line-height: 7.3rem
+  margin-top: 1rem
+h2
+  font-size: 3rem
+  margin: 10px 0
+h3
+  font-size: 2rem
+  margin: 10px 0
+h4
+  font-size: 1.5rem
+  margin: 10px 0
+p
+  font-size: 2.2rem
+  line-height: 4.5rem
+  font-weight: bold
+a
+  color: #ffffff
+
+///// 画面サイズ
+#home
+    #container
+        margin-bottom: 80px
+        +tablet
+            margin: 0 80px
+        +mobile
+            margin: 0 40px
+        #title,#intro,#video,#concept,#cover,#specs,#purchase,#community,#development,#license,#faq
+            max-width: $width
+            margin: 80px auto
+
+#home
+  header
+    .link
+      position: absolute
+      top: 20px
+      right: 20px
+      img
+        width: 50px
+        margin-left: 10px
+
+///// コンテンツ
+#home
+    #title
+        position: relative
+        h1
+          font-family: 'Patua One', cursive
+          font-size: 115px
+          line-height: 14rem
+        img
+          position: absolute
+          right: 0
+          bottom: 0
+
++mobile
+  #home
+    #title
+      h1
+        font-size: 50px
+        line-height: 50px
+      img
+        width: 70px
+
+#home
+    #intro
+        h1
+            span
+                color: #222222
+                background-color: #FEE100
+        > p
+            margin-top: 40px
+
++mobile
+  #home
+    #intro
+      h1
+        font-size: 3rem
+        line-height: 4rem
+
+#home
+    #video
+      iframe
+        width: 100%
+
+#home
+    #concept
+        .wrap
+            display: flex
+            flex-wrap: wrap
+            margin-left: -40px
+            .item
+                margin-left: 40px
+                &:first-child
+                    width: 100%
+                &:not(:first-child)
+                    flex: 1
+                    margin-top: 2rem
+                h2
+                    p
+
++mobile
+  #home
+    #concept
+      .wrap
+        display: block
+        .item
+          width: auto !important
+
+#cover
+  img
+    width: 100%
+
+#home
+    #specs
+        .hardware
+        .size
+            display: flex
+            flex-wrap: wrap
+            p
+            img
+              width: 45%
+
++mobile
+  #home
+    #specs
+      .size
+        display: block
+        img
+          width: 100%
+
+#home
+    #purchase
+        .wrap
+            display: flex
+            flex-wrap: wrap
+            margin-left: -40px
+            margin-top: 30px
+            .item
+                width: calc(50% - 40px)
+                margin-left: 40px
+                a
+                  display: block
+                  width: 100%
+                  color: #222222
+                  font-weight: bold
+                  background: #fee100
+                  text-align: center
+                  padding: 30px
+                  margin-top: 30px
+                  &:hover
+                    background: #fae645
+
++mobile
+  #home
+    #purchase
+      .wrap
+        display: block
+        .item
+            width: auto
+            margin-top: 10px
+
+#home
+  #community
+    div
+      display: flex
+      margin-left: -20px
+      a
+        display: block
+        width: 100%
+        color: #222222
+        font-weight: bold
+        background: #fee100
+        text-align: center
+        padding: 30px
+        margin-top: 30px
+        margin-left: 20px
+        &:hover
+          background: #fae645
++mobile
+  #home
+    #community
+      div
+        display: block
+
+#home
+  #development
+    div
+      display: flex
+      margin-left: -20px
+      a
+        display: block
+        width: 100%
+        color: #222222
+        font-weight: bold
+        background: #fee100
+        text-align: center
+        padding: 30px
+        margin-top: 30px
+        margin-left: 20px
+        &:hover
+          background: #fae645
++mobile
+  #home
+    #development
+      div
+        display: block
+
+#calil
+  text-align: center
+  img
+    width: 200px
+    margin-bottom: 30px
