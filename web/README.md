@@ -13,6 +13,6 @@ npm start
 npm run build
 
 
-## Deploy
+## Demo
 
-https://app.netlify.com/sites/openbookcamera/overview
+https://calil.github.io/openbookcamera/
