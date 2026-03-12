@@ -107,3 +107,5 @@ data/
 web/node_modules/
 web/.cache/
 web/build/
+
+.parcel-cache/
