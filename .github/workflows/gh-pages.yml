@@ -10,7 +10,7 @@ jobs:
       - name: Install and Build 🔧
         run: |
           cd web
-          npm install
+          npm install --ignore-scripts
           npm run build
 
       - name: Deploy 🚀
