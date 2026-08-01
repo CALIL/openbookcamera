@@ -1,5 +1,8 @@
 name: Build and Deploy
-on: [push]
+# 作業ブランチへの push で本番へ配信されないよう、対象を既定ブランチに限定する
+on:
+  push:
+    branches: ["master"]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
