@@ -1,28 +1,59 @@
 name: Build and Deploy
+
+# GitHub Pages への配信。gh-pages ブランチを経由せず、公式 Action で
+# ビルド成果物を直接 Pages へ渡す。
+#
+# 前提: リポジトリ設定 Settings → Pages → Source が "GitHub Actions" であること。
+# "Deploy from a branch" のままだと、このワークフローは成功しても公開内容が
+# 更新されない（古い gh-pages の内容が配信され続ける）。
 # 作業ブランチへの push で本番へ配信されないよう、対象を既定ブランチに限定する
 on:
   push:
     branches: ["master"]
 permissions: {}
+
+# 配信が同時に走らないよう直列化する
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
+      # configure-pages が Pages サイトの情報を取得するために必要
+      pages: read
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v7
         with:
+          # 配信は artifact 経由で行うため、checkout の資格情報は使わない
           persist-credentials: false
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
       - name: Install and Build 🔧
         run: |
           cd web
           npm ci --ignore-scripts
           npm run build
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f # v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
         with:
-          branch: gh-pages
-          folder: web/build
+          path: web/build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write      # Pages へ配信する
+      id-token: write   # 配信元を検証する OIDC トークンの発行
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
