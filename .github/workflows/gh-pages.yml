@@ -22,8 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      # configure-pages が Pages サイトの情報を取得するために必要
-      pages: read
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v7
@@ -31,8 +29,6 @@ jobs:
           # 配信は artifact 経由で行うため、checkout の資格情報は使わない
           persist-credentials: false
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v6
       - name: Install and Build 🔧
         run: |
           cd web
