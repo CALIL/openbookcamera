@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ページが見つかりません | Open Book Camera</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
+    <!--
+      このページはどの階層のパスに対しても返されるので、
+      アセットの参照は相対パスではなく絶対パスにしている。
+    -->
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* 1画面で完結するページなので、必要な分だけここに書く */
+        #notfound {
+            max-width: 886px;
+            min-height: 100vh;
+            margin: 0 auto;
+            padding: 80px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        #notfound h1 {
+            font-family: 'Patua One', cursive;
+            font-size: 115px;
+            line-height: 1.2;
+            margin: 0 0 20px;
+        }
+
+        #notfound .back {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 20px 40px;
+            color: #222222;
+            font-weight: bold;
+            background: #fee100;
+        }
+
+        #notfound .back:hover {
+            background: #fae645;
+        }
+
+        #notfound .logo {
+            width: 200px;
+            margin-top: 60px;
+        }
+
+        @media screen and (max-width: 768px) {
+            #notfound {
+                padding: 40px 20px;
+            }
+
+            #notfound h1 {
+                font-size: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="notfound">
+        <h1>404</h1>
+        <p>ページが見つかりませんでした。</p>
+        <a class="back" href="/">トップページへ</a>
+        <img class="logo" src="/img/artwork.svg" alt="Open Book Camera">
+    </div>
+</body>
+
+</html>
