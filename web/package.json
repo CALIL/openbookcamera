@@ -7,6 +7,9 @@
     "build": "parcel build ./src/index.html --dist-dir ./build/ --public-url ./",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CALIL/openbookcamera.git"
