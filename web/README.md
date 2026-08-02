@@ -2,23 +2,17 @@
 
 https://openbookcamera.com
 
+ビルドの無い静的サイトです。`index.html` / `css/style.css` / `img/` をそのまま配信しています。
+
 ## Development
 
-npm install  
-npm start
+このディレクトリのファイルを直接編集してください。確認はブラウザで `index.html` を開くだけです。
 
-
-## Build
-
-npm run build
-
-
-## Demo
-
-https://calil.github.io/openbookcamera/
+以前は sass を Parcel でビルドしていましたが、1ページの静的サイトに
+ビルドを挟む必要が無いため廃止しました。CSS は `css/style.css` が原本です。
 
 ## Deploy
 
 https://dash.cloudflare.com/9f2a842113dbb9618c3d37c24fa23af4/pages/view/openbookcamera
 
-コミットするとCloudFlare Pagesにデプロイされる
+master にコミットすると Cloudflare Pages に配信されます。ビルドは走りません。

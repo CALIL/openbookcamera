@@ -4,7 +4,8 @@
 # 既存設定は open-pull-requests-limit: 0 でバージョン更新を止めていた。
 # PR が乱立するのを避けるための措置だったが、minor/patch をグループ化すれば
 # 本数は抑えられるため、上限を設けたうえで更新を再開する。
-# 今回あらたに対象へ追加するエコシステム: github-actions, pip
+# 対象: pip（ルートの requirements.txt）と github-actions。
+# web/ はビルドの無い静的ファイルになったため npm の対象から外した。
 #
 # 方針: minor/patch はグループ化して 1 PR にまとめ、major は個別 PR で判断する。
 #       リリース直後の不具合や yank を踏まないよう cooldown で寝かせてから PR を出す。
@@ -33,33 +34,6 @@ updates:
       semver-major-days: 30
     groups:
       python-minor-patch:
-        patterns:
-          - "*"
-        update-types:
-          - "minor"
-          - "patch"
-
-  # ---------------------------------------------------------------------------
-  # npm
-  # ---------------------------------------------------------------------------
-  - package-ecosystem: "npm"
-    directory: "/web"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
-      timezone: "Asia/Tokyo"
-    open-pull-requests-limit: 5
-    labels:
-      - "dependencies"
-      - "javascript"
-    commit-message:
-      prefix: "chore(deps)"
-    cooldown:
-      default-days: 7
-      semver-major-days: 30
-    groups:
-      npm-minor-patch:
         patterns:
           - "*"
         update-types:
