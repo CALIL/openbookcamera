@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 import serial
 import cv2
@@ -102,7 +101,7 @@ def initialize_camera(cap, role):
 
     if IS_NEW4K:
         # しばらく低解像度をデータ取得した後に、高解像度に切り替える
-        cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, float(0.25))
+        cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 0.25)
         cap.set(cv2.CAP_PROP_EXPOSURE, float(-6))
         cap.set(cv2.CAP_PROP_FPS, 15)
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
@@ -132,21 +131,21 @@ def initialize_camera(cap, role):
         cap.set(cv2.CAP_PROP_BRIGHTNESS, 0 if IS_NEW4K else -50)
         cap.set(cv2.CAP_PROP_GAMMA, 110 if IS_NEW4K else 150)
         if IS_NEW4K:
-            cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, float(0.25))
+            cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 0.25)
             cap.set(cv2.CAP_PROP_EXPOSURE, float(-7))
     elif role == "SIDE":
         cap.set(cv2.CAP_PROP_FOCUS, 235 if IS_NEW4K else 95)  # フォーカス設定
         cap.set(cv2.CAP_PROP_BRIGHTNESS, 0 if IS_NEW4K else -100)
         cap.set(cv2.CAP_PROP_GAMMA, 110 if IS_NEW4K else 110)
         if IS_NEW4K:
-            cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, float(0.25))
+            cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 0.25)
             cap.set(cv2.CAP_PROP_EXPOSURE, float(-7))
     elif role == "TOP":
         cap.set(cv2.CAP_PROP_FOCUS, 200 if IS_NEW4K else 77)  # フォーカス設定
         cap.set(cv2.CAP_PROP_BRIGHTNESS, 0 if IS_NEW4K else -40)
         cap.set(cv2.CAP_PROP_GAMMA, 110 if IS_NEW4K else 130)
         if IS_NEW4K:
-            cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, float(0.25))
+            cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 0.25)
             cap.set(cv2.CAP_PROP_EXPOSURE, float(-6))
     else:
         cap.set(cv2.CAP_PROP_FOCUS, 200 if IS_NEW4K else 70)
